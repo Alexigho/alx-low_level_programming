@@ -1,22 +1,33 @@
+lines (30 sloc)  413 Bytes
 #include "main.h"
 
 /**
- * print_triangle - prints a triangle.
- * @size: numbers of lines.
- * Return: no return.
+ * print_triangle - Prints a triangle, followed by a new line
+ * @size: The size of the triangle
  */
 void print_triangle(int size)
 {
-	int i, j;
+	int c, i, j;
 
-	for (i = 0; i < size; i++)
+	c = 0;
+	i = size - 1;
+	while (c < size)
 	{
-		for (j = 1; j < (size - i); j++)
+		i = size - 1 - c;
+		j = c + 1;
+		while (i > 0)
+		{
 			_putchar(' ');
-		for (j--; j < size; j++)
-			_putchar(35);
-		if (i < (size - 1))
-			_putchar('\n');
+			i--;
+		}
+		while (j > 0)
+		{
+			_putchar('#');
+			j--;
+		}
+		_putchar('\n');
+		c++;
 	}
-	_putchar('\n');
+if (size <= 0)
+		_putchar('\n');
 }
