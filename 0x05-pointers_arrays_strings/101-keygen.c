@@ -1,53 +1,36 @@
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <time.h>
+#include <stdlib.h>
+#include <stdio.h>
+#define stopLimit 2645
+#define asciiStop 127
+#define asciiStart 32
 
 /**
- * main - Entry point
+ * main - generates a random password
  *
- * Return: 0
+ * Return: 0 if success
+ *
  */
+
 int main(void)
 {
-	int N = 10;
-	int i = 0;
-	int randomizer = 0;
-	char numbers[] = "0123456789";
-	char letter[] = "abcdefghijklmnoqprstuvwyzx";
-	char LETTER[] = "ABCDEFGHIJKLMNOQPRSTUYWVZX";
-	char symbols[] = "!@#$^&*?";
-	char password[10];
+	char password[100];
+	int randValue, num = 0, i = 0;
 
-	srand((unsigned int)(time(NULL)));
-	randomizer = rand() % 4;
+	srand(time(NULL));
 
-	for (i = 0; i < N; i++)
+	while (num < stopLimit)
 	{
-		if (randomizer == 1)
+		randValue = random() % asciiStop;
+		if (randValue > asciiStart)
 		{
-			password[i] = numbers[rand() % 10];
-			randomizer = rand() % 4;
-			printf("%c", password[i]);
-		}
-		else if (randomizer == 2)
-		{
-			password[i] = symbols[rand() % 8];
-			randomizer = rand() % 4;
-			printf("%c", password[i]);
-		}
-		else if (randomizer == 3)
-		{
-			password[i] = LETTER[rand() % 26];
-			randomizer = rand() % 4;
-			printf("%c", password[i]);
-		}
-		else
-		{
-			password[i] = letter[rand() % 26];
-			randomizer = rand() % 4;
-			printf("%c", password[i]);
+			password[i++] = randValue;
+			num += randValue;
 		}
 	}
+
+	password[i++] = (2772 - num);
+	password[i] = '\0';
+	printf("%s", password);
 return (0);
 }
