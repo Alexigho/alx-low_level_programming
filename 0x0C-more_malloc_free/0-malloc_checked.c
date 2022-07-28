@@ -1,18 +1,21 @@
 #include "main.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <limits.h>
 
 /**
- * malloc_checked - allocates memory using malloc.
- * @b: the memory size
- *
- * Return: a pointer to the allocated memory
+ * malloc_checked - allocates a dynamic memory
+ * @b: size of memory to be created
+ * Return: pointer to the memory space created
  */
+
 void *malloc_checked(unsigned int b)
 {
-	void *memory;
-	
-	memory = malloc(b);
-	if (memory == NULL)
+	int *ptr;
+
+	ptr = malloc(b);
+	if (ptr == NULL)
 		exit(98);
 
-	return (memory);
+	return (ptr);
 }
